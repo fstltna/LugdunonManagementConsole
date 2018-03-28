@@ -1,2 +1,2 @@
 # LugdunonManagementConsole
-A text GUI for managing your Lugdunon server
+Allows you to manage your Lugdunon server with a text based GUI
