@@ -1,6 +1,6 @@
 # LugdunonManagementConsole
 Allows you to manage your Lugdunon server with a text based GUI
-
+Official support sites: [Official Github Repo](Official support sites: [Official Github Repo](https://github.com/fstltna/LugdunonManagementConsole) - [Official Forum](https://synchronetbbs.org/index.php/forum/bbs-utils-suite-support) https://github.com/fstltna/bbs_utils) - [Official Forum](https://lugdunoncity.org/index.php/forum/lugdunon-management-console) 
 ---
 Edit "lmc" and change the settings at the top if your lugdunon server is not in /root/lugdunon.
 
