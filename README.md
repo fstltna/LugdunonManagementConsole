@@ -10,7 +10,7 @@ You will need to run cpan and install these modules:
 - Term::ReadKey
 - Term::ANSIScreen
 
-You also need to have my Lugdunon Startup Script installed.
+You also need to have my Lugdunon Startup Scripts and Backup Scripts installed.
 
-Then copy "lmc" into a directory in your path and you should be ok.
+I suggest you add this directory to your PATH variable so you can run this script directly and can update it and use the new version easily.
 
