@@ -15,7 +15,7 @@ my $BackupCommand = "/root/LugBackup/lugbackup.pl";
 # No changes below here
 ###################################################
 
-my $MMC_ver = "0.2.0";
+my $MMC_ver = "1.0.0";
 my $ServerStatus = "foo";
 
 my $d = new UI::Dialog ( backtitle => "Lugdunon Management Console v$MMC_ver", height => 20, width => 65, listheight => 5,
@@ -68,6 +68,7 @@ sub MainMenu
                                       '6', 'Edit server.cfg',
                                       '7', 'Edit world.cfg',
                                       '8', 'Run a Backup',
+                                      '9', 'Kill Lugdunon',
                                       'q', 'Quit LMC' ] );
 }
 
@@ -123,6 +124,18 @@ while (-1)
 	{
 		# Run a backup
 		system("$BackupCommand");
+	}
+	elsif ($menuselection eq "9")
+	{
+		# Kill Lugdunon server process
+		my $running=`ps ax|grep net.lugdunon.Server|grep -v grep`;
+	        if ($running ne "")
+		{
+			# Process is running, kill it
+			#system("killall ./jre/bin/java");
+			system("killall net.lugdunon.Server");
+			sleep(5);
+		}
 	}
 }
 
