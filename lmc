@@ -19,6 +19,11 @@ my $BackupCommand = "/root/LugBackup/lugbackup.pl";
 my $MMC_ver = "1.0.0";
 my $ServerStatus = "foo";
 
+if ($ENV{'EDITOR'})
+{
+        $FileEditor = $ENV{'EDITOR'};
+}
+
 my $d = new UI::Dialog ( backtitle => "Lugdunon Management Console v$MMC_ver", height => 20, width => 65, listheight => 5,
 	order => [ 'ascii', 'cdialog', 'xdialog' ]);
 
