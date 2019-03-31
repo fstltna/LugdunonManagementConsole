@@ -16,7 +16,7 @@ my $BackupCommand = "/root/LugBackup/lugbackup.pl";
 # No changes below here
 ###################################################
 
-my $MMC_ver = "1.0.0";
+my $MMC_ver = "1.1.0";
 my $ServerStatus = "foo";
 
 if ($ENV{'EDITOR'})
@@ -126,7 +126,7 @@ while (-1)
 	elsif ($menuselection eq "3")
 	{
 		$d->msgbox( text => "To exit the Lugdunon console and return to LMC press CTRL-A CTRL-D" );
-		system("screen -r");
+		system("screen -r Lugdunon");
 	}
 	elsif ($menuselection eq "4")
 	{
