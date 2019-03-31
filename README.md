@@ -6,9 +6,10 @@ Edit "lmc" and change the settings at the top if your lugdunon server is not in 
 
 You will need to run cpan and install these modules:
 
-- UI::Dialog
-- Term::ReadKey
-- Term::ANSIScreen
+- cpan -i UI::Dialog
+- cpan -i Term::ReadKey
+- cpan -i Term::ANSIScreen
+- cpan -i Proc::ProcessTable
 
 You also need to have my Lugdunon Startup Scripts and Backup Scripts installed.
 

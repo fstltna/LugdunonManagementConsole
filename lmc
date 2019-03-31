@@ -5,6 +5,7 @@ use warnings;
 use UI::Dialog;
 use Term::ReadKey;
 use Term::ANSIScreen qw(cls);
+use Proc::ProcessTable;
 
 my $FileEditor = "/bin/nano";
 my $InitDName = "/etc/init.d/lugdunon";
@@ -48,6 +49,31 @@ sub CheckServerStatus
 		$ServerStatus = "Stopped";
 	}
 
+}
+
+sub KillLugdunon
+{
+	# This kills just the Lugdunon process, so it can be restarted
+	# via the startup script
+	my $FORMAT = "%-6s %-10s %-8s %-24s %s\n";
+	my $t = Proc::ProcessTable->new;
+	#printf($FORMAT, "PID", "TTY", "STAT", "START", "COMMAND"); 
+	foreach my $p ( @{$t->table} )
+	{
+		#printf($FORMAT, 
+		#	$p->pid, 
+		#	$p->ttydev, 
+		#	$p->state, 
+		#	scalar(localtime($p->start)), 
+		#	$p->cmndline);
+		if (index($p->cmndline, "net.lugdunon.Server") != -1)
+		{
+			# Saw the server, kill it
+			my $pid = $p->pid;
+			#print "**** saw it $pid\n";
+			system("kill $pid");
+		}
+	}
 }
 
 sub MainMenu
@@ -132,8 +158,8 @@ while (-1)
 	        if ($running ne "")
 		{
 			# Process is running, kill it
-			#system("killall ./jre/bin/java");
-			system("killall net.lugdunon.Server");
+			print "Killing process, please wait...";
+			KillLugdunon();
 			sleep(5);
 		}
 	}
