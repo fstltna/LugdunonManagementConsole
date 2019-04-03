@@ -16,7 +16,16 @@ my $BackupCommand = "/root/LugBackup/lugbackup.pl";
 # No changes below here
 ###################################################
 
-my $MMC_ver = "1.1.0";
+# Read in host name
+my $HOSTFILE = "/etc/hostname";
+open FILE, $HOSTFILE or die "Couldn't open file: $HOSTFILE";
+my $HOST = <FILE>;
+close FILE;
+chop($HOST);
+
+my $KILL_COMMAND = "/usr/bin/wget -O /dev/null http://$HOST:41976/management/CORE.COMMAND.SHUTDOWN?mode=now";
+
+my $MMC_ver = "1.2.0";
 my $ServerStatus = "foo";
 
 if ($ENV{'EDITOR'})
@@ -58,27 +67,8 @@ sub CheckServerStatus
 
 sub KillLugdunon
 {
-	# This kills just the Lugdunon process, so it can be restarted
-	# via the startup script
-	my $FORMAT = "%-6s %-10s %-8s %-24s %s\n";
-	my $t = Proc::ProcessTable->new;
-	#printf($FORMAT, "PID", "TTY", "STAT", "START", "COMMAND"); 
-	foreach my $p ( @{$t->table} )
-	{
-		#printf($FORMAT, 
-		#	$p->pid, 
-		#	$p->ttydev, 
-		#	$p->state, 
-		#	scalar(localtime($p->start)), 
-		#	$p->cmndline);
-		if (index($p->cmndline, "net.lugdunon.Server") != -1)
-		{
-			# Saw the server, kill it
-			my $pid = $p->pid;
-			#print "**** saw it $pid\n";
-			system("kill $pid");
-		}
-	}
+	system($KILL_COMAND);
+	sleep (10);
 }
 
 sub MainMenu
@@ -165,7 +155,6 @@ while (-1)
 			# Process is running, kill it
 			print "Killing process, please wait...";
 			KillLugdunon();
-			sleep(5);
 		}
 	}
 }
