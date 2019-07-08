@@ -67,7 +67,7 @@ sub CheckServerStatus
 
 sub KillLugdunon
 {
-	system($KILL_COMAND);
+	system($KILL_COMMAND);
 	sleep (10);
 }
 
