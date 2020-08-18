@@ -8,9 +8,9 @@ use Term::ANSIScreen qw(cls);
 use Proc::ProcessTable;
 
 my $FileEditor = "/bin/nano";
-my $InitDName = "/etc/init.d/lugdunon";
-my $LUGDUNONDIR = "/root/lugdunon";
-my $BackupCommand = "/root/LugBackup/lugbackup.pl";
+my $InitDName = "/home/lugowner/bin/lugdunon";
+my $LUGDUNONDIR = "/home/lugowner/lugdunon";
+my $BackupCommand = "/home/lugowner/LugBackup/lugbackup.pl";
 
 ###################################################
 # No changes below here
@@ -25,7 +25,7 @@ chop($HOST);
 
 my $KILL_COMMAND = "/usr/bin/wget -O /dev/null http://$HOST:41976/management/CORE.COMMAND.SHUTDOWN?mode=now";
 
-my $MMC_ver = "1.2.0";
+my $MMC_ver = "1.3.0";
 my $ServerStatus = "foo";
 
 if ($ENV{'EDITOR'})
