@@ -11,6 +11,8 @@ my $FileEditor = "/bin/nano";
 my $InitDName = "/home/lugowner/bin/lugdunon";
 my $LUGDUNONDIR = "/home/lugowner/lugdunon";
 my $BackupCommand = "/home/lugowner/LugBackup/lugbackup.pl";
+my $ServerLogFile = "/home/lugowner/lugdunon/logs/server0.log";
+my $Pager = "/usr/bin/less";
 
 ###################################################
 # No changes below here
@@ -25,7 +27,7 @@ chop($HOST);
 
 my $KILL_COMMAND = "/usr/bin/wget -O /dev/null http://$HOST:41976/management/CORE.COMMAND.SHUTDOWN?mode=now";
 
-my $MMC_ver = "1.4.0";
+my $MMC_ver = "1.5.0";
 my $ServerStatus = "foo";
 
 if ($ENV{'EDITOR'})
@@ -90,6 +92,7 @@ sub MainMenu
                                       '7', 'Edit world.cfg',
                                       '8', 'Run a Backup',
                                       '9', 'Kill Lugdunon',
+                                      '10', 'View Log',
                                       'q', 'Quit LMC' ] );
 }
 
@@ -156,6 +159,11 @@ while (-1)
 			print "Killing process, please wait...";
 			KillLugdunon();
 		}
+	}
+	elsif ($menuselection eq "10")
+	{
+		# Display Log File
+                system("$Pager $ServerLogFile");
 	}
 }
 
