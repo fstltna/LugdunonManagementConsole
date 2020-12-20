@@ -25,7 +25,7 @@ chop($HOST);
 
 my $KILL_COMMAND = "/usr/bin/wget -O /dev/null http://$HOST:41976/management/CORE.COMMAND.SHUTDOWN?mode=now";
 
-my $MMC_ver = "1.3.0";
+my $MMC_ver = "1.4.0";
 my $ServerStatus = "foo";
 
 if ($ENV{'EDITOR'})
@@ -81,8 +81,8 @@ sub MainMenu
 	}
 
 	$menuselection = $d->menu( title => "Main Menu", text => "Server is $ServerStatus and respawn is $WantRespawn - Select one:",
-                            list => [ '1', 'Start Server',
-                                      '2', 'Stop Server',
+                            list => [ '1', 'Start Watchdog',
+                                      '2', 'Stop Watchdog',
                                       '3', 'Server Console',
                                       '4', 'Turn Off Respawn',
                                       '5', 'Turn Respawn On',
